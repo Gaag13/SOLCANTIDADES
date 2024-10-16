@@ -1,0 +1,11 @@
+﻿<RevitAddIns>
+    <AddIn Type="Application">
+        <Name>CANTIDADES</Name>
+        <Assembly>CANTIDADES/CANTIDADES.dll</Assembly>
+        <AddInId>1B1D5C3A-9943-46F9-AC54-3E6CD12579B5</AddInId>
+        <FullClassName>CANTIDADES.Application</FullClassName>
+        <VendorId>Development</VendorId>
+        <VendorDescription></VendorDescription>
+        <VendorEmail></VendorEmail>
+    </AddIn>
+</RevitAddIns>

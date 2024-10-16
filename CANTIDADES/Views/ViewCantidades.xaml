@@ -1,0 +1,115 @@
+﻿<Window x:Class="CANTIDADES.Views.ViewCantidades"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CANTIDADES.Views"
+        mc:Ignorable="d" 
+        Title="ViewCantidades" Height="500" Width="600"
+        WindowStyle="None"    ResizeMode="NoResize" >
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="GlobalStyles.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="ModernTextBlockStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Background="#3A3A5C">
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+
+        </Grid.RowDefinitions>
+
+
+        <!-- Barra de título personalizada -->
+        <Grid Background="#2A2A45" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Cantidades " Foreground="White" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            <Button Grid.Column="1" Content="&#xE949;" Style="{StaticResource WindowButtonStyle}" Click="MinimizeButton_Click"/>
+            <!--<Button Grid.Column="2" Content="&#xE739;" Style="{StaticResource WindowButtonStyle}" Click="MaximizeRestoreButton_Click"/>-->
+            <Button Grid.Column="3" Content="&#xE106;" Style="{StaticResource WindowButtonStyle}" Click="CloseButton_Click"/>
+        </Grid>
+
+
+
+        <!-- Contenido Principal -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Background="#4A4A7C" CornerRadius="5" Margin="0,0,10,0">
+                <TreeView x:Name="tre_v1" 
+                          FontStyle="Italic"
+                          Background="Transparent"                                         
+                          BorderThickness="0"                         
+                          SelectedItemChanged="tre_v1_SelectedItemChanged"
+                          ItemContainerStyle="{StaticResource PinkTreeViewItemStyle}"/>
+            </Border>
+
+            <Border Grid.Column="1" Background="#4A4A7C" CornerRadius="5" Margin="10,0,0,0">
+                <DataGrid x:Name="dta_grid1" 
+                          MouseUp="dra_grid1_MouseUp"
+                          Background="Transparent"
+                          Foreground="Black"
+                          BorderThickness="0"
+                          GridLinesVisibility="All"
+                          HorizontalGridLinesBrush="#5A5A8C"
+                          VerticalGridLinesBrush="#5A5A8C"
+                          HeadersVisibility="Column">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#2A2A4C"/>
+                            <Setter Property="Foreground" Value="Yellow"/>
+                            <Setter Property="Padding" Value="10"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                </DataGrid>
+            </Border>
+        </Grid>
+
+        <!-- Pie de página -->
+        <Grid Grid.Row="2" Background="#2A2A4C">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" MinWidth="264"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="lbl_TotalElementos" Content="Total elementos" 
+           HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"
+           Style="{StaticResource CustomLabelStyle}" Height="26" Width="169" Grid.Column="1" Margin="17,0,0,0"/>
+
+            <Label x:Name="lbl_VolumenTotal" Content="Volumen Total:"
+           HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"
+           Margin="186,0,0,10"
+           Style="{StaticResource CustomLabelStyle}" Grid.Column="1" Height="25" Width="168" Grid.ColumnSpan="2"/>
+
+            <Button Grid.Column="2" x:Name="btn_ExportExcel" Content="Exportar a Excel"
+            HorizontalAlignment="Center" VerticalAlignment="Top"
+            Width="120" Height="30" Click="btn_ExportExcel_Click"
+            Style="{StaticResource ButtonStyle}" Margin="0,-2,0,0"/>
+
+
+        </Grid>
+    </Grid>
+
+</Window>
