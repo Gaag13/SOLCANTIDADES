@@ -42,7 +42,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Resources\Icons\CANT16x16.png" />
+      <None Remove="Resources\Icons\Contar16x16.png" />
       <None Remove="Resources\Icons\User16x16.png" />
     </ItemGroup>
 
@@ -58,7 +58,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Resources\Icons\CANT16x16.png" />
+        <Resource Include="Resources\Icons\Contar16x16.png" />
         <Resource Include="Resources\Icons\RibbonIcon16.png" />
         <Resource Include="Resources\Icons\RibbonIcon32.png" />
         <Resource Include="Resources\Icons\User16x16.png" />

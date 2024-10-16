@@ -29,13 +29,7 @@ namespace CANTIDADES.Views
     public partial class Register : System.Windows.Window
     {
         private IFirebaseClient client;
-
-        //IFirebaseConfig config = new FirebaseConfig
-        //{
-        //    AuthSecret = "BF0KL7IhqDzptYihcrOVlWsJ9J0iLYqSMlQvebqV",
-        //    BasePath = "https://warbimpro-default-rtdb.firebaseio.com/"
-        //};
-        //IFirebaseClient client;
+        
         public Register(IFirebaseClient firebaseClient)
         {
             InitializeComponent();
@@ -65,7 +59,8 @@ namespace CANTIDADES.Views
                 Name = txtNombreUsuario.Text,
                 Email = txtEmail.Text,
                 Country = txtPais.Text,
-                Password = txtPassword.Password
+                Password = txtPassword.Password,
+                Datetime = DateTime.Now.ToString("MM/dd/yyyy")
             };
 
 

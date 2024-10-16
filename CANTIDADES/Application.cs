@@ -17,16 +17,14 @@ namespace CANTIDADES
 
         private void CreateRibbon()
         {
-            var panel = Application.CreatePanel("Commands", "CANTIDADES");
+            var panel = Application.CreatePanel("Cuantificacióm", "CANTIDADES");
 
             panel.AddPushButton<CmdKeyFireSharp>("Login")
-                .SetImage("/QUANTITIES;component/Resources/Icons/CANT32X32.png")
-                .SetLargeImage("/QUANTITIES;component/Resources/Icons/User16x16.png");
+                .SetLargeImage("/CANTIDADES;component/Resources/Icons/User16x16.png");
 
             panel.AddPushButton<CmdCantidades>("QUANTITIES")
                 .SetAvailabilityController<AvailabilityButton>()
-                .SetImage("/QUANTITIES;component/Resources/Icons/CANT32X32.png")
-                .SetLargeImage("/QUANTITIES;component/Resources/Icons/CANT16X16.png");
+                .SetLargeImage("/CANTIDADES;component/Resources/Icons/Contar16x16.png");
         }
     }
 }
