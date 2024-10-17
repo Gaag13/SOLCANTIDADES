@@ -13,5 +13,6 @@ namespace CANTIDADES.Models
         public string Password { get; set; }
         public string Country { get; set; }
         public string Datetime { get; set; }
+        public bool IsActive { get; set; }
     }
 }

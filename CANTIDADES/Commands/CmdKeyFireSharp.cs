@@ -17,7 +17,6 @@ namespace CANTIDADES.Commands
     [Transaction(TransactionMode.Manual)]
     public class CmdKeyFireSharp : ExternalCommand 
     {
-        
         public override void Execute()
         {
             // Inicializar Firebase

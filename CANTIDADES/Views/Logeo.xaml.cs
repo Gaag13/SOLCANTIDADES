@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Autodesk.Revit.UI;
+using CANTIDADES.Commands;
 using CANTIDADES.Models;
 using FireSharp.Interfaces;
 using FireSharp.Response;
@@ -24,6 +25,7 @@ namespace CANTIDADES.Views
     /// </summary>
     public partial class Logeo : Window
     {
+        
         private IFirebaseClient client;
 
         public Logeo(IFirebaseClient firebaseClient)
@@ -46,10 +48,11 @@ namespace CANTIDADES.Views
                 if (user.Value.Name == enteredUsername)
                 {
                     userFound=true;
-                    if (user.Value.Password == enteredPassword)
+                    if (Security.VerificacionCotraseña(enteredPassword,user.Value.Password))
                     {
                         MessageBox.Show("Logueado Exitoso", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-
+                        SesionManager guardarEstadoDeSesion=new SesionManager();
+                        guardarEstadoDeSesion.GuardarEstadoDeSesion(enteredUsername);
                         TaskDialog.Show("Exito", "Button Habilitado");
                         AvailabilityButton.IsEnabled = true;
                     }
@@ -73,5 +76,58 @@ namespace CANTIDADES.Views
             registerWindow.ShowDialog();
             this.Close();
         }
+        private void Logeo_OnLoaded(object sender, RoutedEventArgs e)
+        {
+
+            SesionManager estadoLogin = new SesionManager();
+            //var usuarioId = estadoLogin.ObtenerUsuarioActual();
+
+            //if (!string.IsNullOrEmpty(usuarioId))
+            //{
+            //    ValidarLicencia(usuarioId);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("No se encontró un usuario logueado.");
+            //}
+            
+            if (estadoLogin.EstaLogueado())
+            {
+                AvailabilityButton.IsEnabled = true;
+                MessageBox.Show("Bienvenido de nuevo. Ya estas logueado");
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("No estas logueado");
+            }
+
+        }
+        private async void ValidarLicencia(string usuarioId)
+        {
+            FirebaseResponse response = await client.GetAsync("Usuario");
+            var licencia = response.ResultAs<DataFirebase>();
+            if (licencia == null)
+            {
+                MessageBox.Show("No se encontró la licencia.");
+                return;
+            }
+            TimeSpan diferencia = DateTime.Now - DateTime.Parse(licencia.Datetime);
+
+            if (diferencia.TotalDays > 1 && licencia.IsActive)
+            {
+                MessageBox.Show("Tu version de prueba ha expirado. Por favor, compra el producto");
+                licencia.IsActive = false;
+                await client.SetAsync($"Licencias/{usuarioId}", licencia);
+                System.Windows.Application.Current.Shutdown();
+            }
+            else
+            {
+                MessageBox.Show($"Días restantes: {15 - diferencia.TotalDays}");
+            }
+
+        }
+
+        
     }
 }

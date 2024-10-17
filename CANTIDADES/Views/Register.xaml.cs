@@ -15,6 +15,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using Autodesk.Revit.DB.Architecture;
 using Autodesk.Revit.UI;
+using CANTIDADES.Commands;
 using CANTIDADES.Models;
 using FireSharp.Config;
 using FireSharp.Interfaces;
@@ -53,14 +54,16 @@ namespace CANTIDADES.Views
         }
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
+            string cotraseñaHasheada = Security.EncriptarCotraseña(txtPassword.Password);
 
             var data = new DataFirebase()
             {
                 Name = txtNombreUsuario.Text,
                 Email = txtEmail.Text,
                 Country = txtPais.Text,
-                Password = txtPassword.Password,
-                Datetime = DateTime.Now.ToString("MM/dd/yyyy")
+                Password = cotraseñaHasheada,
+                Datetime = DateTime.Now.ToString("MM/dd/yyyy"),
+                IsActive = true
             };
 
 
