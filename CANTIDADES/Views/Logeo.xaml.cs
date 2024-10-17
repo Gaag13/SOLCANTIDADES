@@ -80,17 +80,17 @@ namespace CANTIDADES.Views
         {
 
             SesionManager estadoLogin = new SesionManager();
-            //var usuarioId = estadoLogin.ObtenerUsuarioActual();
+            var usuarioId = estadoLogin.ObtenerUsuarioActual();
 
-            //if (!string.IsNullOrEmpty(usuarioId))
-            //{
-            //    ValidarLicencia(usuarioId);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("No se encontró un usuario logueado.");
-            //}
-            
+            if (!string.IsNullOrEmpty(usuarioId))
+            {
+                ValidarLicencia(usuarioId);
+            }
+            else
+            {
+                MessageBox.Show("No se encontró un usuario logueado.");
+            }
+
             if (estadoLogin.EstaLogueado())
             {
                 AvailabilityButton.IsEnabled = true;
