@@ -1,4 +1,35 @@
-# SOLCANTIDADES
+# SOLCANTIDADES 🚀  
+
+**SOLCANTIDADES** es un complemento (**addin**) para **Autodesk Revit**, desarrollado en **C#**, que permite calcular en **tiempo real** las áreas y volúmenes de los elementos mientras se modela en **BIM**.  
+
+Su objetivo principal es proporcionar a los modeladores una herramienta que facilite la **extracción de cantidades de obra en tiempo real**, mejorando la precisión y eficiencia en la planificación y ejecución de proyectos de construcción.  
+
+## 🔹 **Características Principales**  
+✔ **Cálculo en tiempo real** de **áreas y volúmenes** durante la modelación BIM.  
+✔ **Optimización del proceso de diseño**, permitiendo decisiones más rápidas y precisas.  
+✔ **Integración fluida con Revit**, mejorando el flujo de trabajo del modelador.  
+✔ **Datos instantáneos sin necesidad de procesos manuales adicionales**.  
+
+## 🔹 **Desarrollo Futuro**  
+A futuro, **SOLCANTIDADES** evolucionará para incluir funcionalidades adicionales como:  
+✅ **Estimación de materiales** basada en los volúmenes extraídos y utilizando **dosificaciones predefinidas**.  
+✅ **Cálculo de cantidades de materiales** como **arena, agua, grava y cemento** según la obra modelada.  
+✅ **Generación de un presupuesto preliminar**, calculando el costo total estimado del proyecto.  
+
+## 🔹 **Tecnologías Utilizadas**  
+- 💻 **C# y Revit API** – Desarrollo del add-in y extracción de datos de modelos BIM.  
+- 🏗 **Autodesk Revit** – Software donde se ejecuta el complemento.  
+
+## 🔹 **Uso y Aplicaciones**  
+✅ Modeladores BIM que necesiten **calcular cantidades de obra de manera instantánea**.  
+✅ Ingenieros y arquitectos que quieran **optimizar el proceso de estimación de costos**.  
+✅ Empresas de construcción que busquen **automatizar cálculos y mejorar su planificación**.  
+
+## 📩 **Contribuciones y Contacto**  
+Si deseas contribuir o necesitas soporte, visita el repositorio en [GitHub](https://github.com/Gaag13/SOLCANTIDADES).  
+
+**¡Optimiza la estimación de cantidades y costos en BIM con SOLCANTIDADES!** 🚀🏗  
+
 
 Autodesk Revit plugin project organised into multiple solution files that target versions 2020 - 2025.
 
