@@ -84,7 +84,7 @@ namespace CANTIDADES.Views
 
             if (!string.IsNullOrEmpty(usuarioId))
             {
-                ValidarLicencia(usuarioId);
+                //ValidarLicencia(usuarioId);
             }
             else
             {
@@ -103,30 +103,30 @@ namespace CANTIDADES.Views
             }
 
         }
-        private async void ValidarLicencia(string usuarioId)
-        {
-            FirebaseResponse response = await client.GetAsync("Usuario");
-            var licencia = response.ResultAs<DataFirebase>();
-            if (licencia == null)
-            {
-                MessageBox.Show("No se encontró la licencia.");
-                return;
-            }
-            TimeSpan diferencia = DateTime.Now - DateTime.Parse(licencia.Datetime);
+        //private async void ValidarLicencia(string usuarioId)
+        //{
+        //    FirebaseResponse response = await client.GetAsync("Usuario");
+        //    var licencia = response.ResultAs<DataFirebase>();
+        //    if (licencia == null)
+        //    {
+        //        MessageBox.Show("No se encontró la licencia.");
+        //        return;
+        //    }
+        //    TimeSpan diferencia = DateTime.Now - DateTime.Parse(licencia.Datetime);
 
-            if (diferencia.TotalDays > 1 && licencia.IsActive)
-            {
-                MessageBox.Show("Tu version de prueba ha expirado. Por favor, compra el producto");
-                licencia.IsActive = false;
-                await client.SetAsync($"Licencias/{usuarioId}", licencia);
-                System.Windows.Application.Current.Shutdown();
-            }
-            else
-            {
-                MessageBox.Show($"Días restantes: {15 - diferencia.TotalDays}");
-            }
+        //    if (diferencia.TotalDays > 1 && licencia.IsActive)
+        //    {
+        //        MessageBox.Show("Tu version de prueba ha expirado. Por favor, compra el producto");
+        //        licencia.IsActive = false;
+        //        await client.SetAsync($"Licencias/{usuarioId}", licencia);
+        //        System.Windows.Application.Current.Shutdown();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show($"Días restantes: {15 - diferencia.TotalDays}");
+        //    }
 
-        }
+        //}
 
         
     }
