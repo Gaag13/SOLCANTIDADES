@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CANTIDADES.Views"
         mc:Ignorable="d" 
         Title="ViewCantidades" Height="500" Width="600"
-        WindowStyle="None"    ResizeMode="NoResize" >
+        WindowStyle="None"    ResizeMode="CanResize" >
 
     <Window.Resources>
         <ResourceDictionary>
@@ -66,6 +66,7 @@
 
             <Border Grid.Column="1" Background="#4A4A7C" CornerRadius="5" Margin="10,0,0,0">
                 <DataGrid x:Name="dta_grid1" 
+                          AutoGenerateColumns="False"
                           MouseUp="dra_grid1_MouseUp"
                           Background="Transparent"
                           Foreground="Black"
@@ -81,6 +82,28 @@
                             <Setter Property="Padding" Value="10"/>
                         </Style>
                     </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
+                        <DataGridTextColumn Header="NIVEL" Binding="{Binding NIVEL}" />
+                        <DataGridTextColumn Header="CATEGORIA" Binding="{Binding CATEGORIA}" />
+                        <!-- Columna de AREA con alineación centrada -->
+                        <DataGridTemplateColumn Header="AREA [m²]">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding AREA}" TextAlignment="Center" Margin="5,0,5,0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        
+                        <DataGridTemplateColumn Header="VOLUMEN [m³]">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding VOLUMEN}" TextAlignment="Center" Margin="5,0,5,0"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
                 </DataGrid>
             </Border>
         </Grid>
@@ -104,9 +127,15 @@
            Style="{StaticResource CustomLabelStyle}" Grid.Column="1" Height="25" Width="168" Grid.ColumnSpan="2"/>
 
             <Button Grid.Column="2" x:Name="btn_ExportExcel" Content="Exportar a Excel"
-            HorizontalAlignment="Center" VerticalAlignment="Top"
-            Width="120" Height="30" Click="btn_ExportExcel_Click"
-            Style="{StaticResource ButtonStyle}" Margin="0,-2,0,0"/>
+            HorizontalAlignment="Left" VerticalAlignment="Top"
+            Width="112" Height="30" Click="btn_ExportExcel_Click"
+            Style="{StaticResource ButtonStyle}" Margin="44,0,0,0"/>
+
+            <Button Grid.Column="2" x:Name="CalcularCantidades" Content="new"
+             HorizontalAlignment="Left" VerticalAlignment="Top"
+             Width="46" Height="30" Click="CalcularCantidades_Click"
+             Style="{StaticResource ButtonStyle}" Margin="196,0,0,0"/>
+
 
 
         </Grid>

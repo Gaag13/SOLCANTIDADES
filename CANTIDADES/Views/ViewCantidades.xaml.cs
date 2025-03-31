@@ -37,8 +37,14 @@ namespace CANTIDADES.Views
 
             lbl_TotalElementos.Content = $"Total de elementos: {totalElementos}";
             lbl_VolumenTotal.Content = $"El volumen total es: {volumenTotal.ToString("F2")} m³";
-
         }
+
+        private void CalcularCantidades_Click(object sender, RoutedEventArgs e)
+        {
+            var cantidades = _viewModel.CalcularCantidadesMaterial();
+            MessageBox.Show($"Cemento: {cantidades["Cemento"]}\nArena: {cantidades["Arena"]}\nGrava: {cantidades["Grava"]}\nAgua: {cantidades["Agua"]}");
+        }
+
         private void dra_grid1_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var selectedItems = dta_grid1.SelectedItems;
@@ -46,6 +52,7 @@ namespace CANTIDADES.Views
 
             _viewModel.SeleccionarElementosRevit(ids); // Delegamos la selección de elementos al ViewModel
         }
+
         private void LlenarTreeView(Dictionary<string, List<string>> tiposElementosNivel)
         {
             tre_v1.Items.Clear();
@@ -59,6 +66,7 @@ namespace CANTIDADES.Views
                 tre_v1.Items.Add(nivelItem);
             }
         }
+
         private void tre_v1_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             var selectedItem = tre_v1.SelectedItem as TreeViewItem;
@@ -86,6 +94,7 @@ namespace CANTIDADES.Views
             lbl_TotalElementos.Content = dta_grid1.Items.Count.ToString();
             lbl_VolumenTotal.Content = CalculandoVolumen(dta_grid1).ToString();
         }
+
         private double CalculandoVolumen(DataGrid dataGrid)
         {
             double volumenTotal = 0;
@@ -121,9 +130,6 @@ namespace CANTIDADES.Views
             return System.Math.Round(volumenTotal, 2);
         }
 
-
-         
-
         private void btn_ExportExcel_Click(object sender, RoutedEventArgs e)
         {
             var excel = new Microsoft.Office.Interop.Excel.Application();
@@ -155,6 +161,7 @@ namespace CANTIDADES.Views
             }
             excel.Visible = true;
         }
+
         #region BOTONES CERRAR
 
         private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -167,7 +174,7 @@ namespace CANTIDADES.Views
             WindowState = WindowState.Minimized;
         }
 
-        //private void MaximizeRestoreButton_Click(object sender, RoutedEventArgs e)
+        //private void MaximizeRestoreButton_Click(object sender, MouseButtonEventArgs e)
         //{
         //    WindowState = (WindowState == WindowState.Maximized) ? WindowState.Normal : WindowState.Maximized;
         //}
@@ -176,6 +183,7 @@ namespace CANTIDADES.Views
         {
             Close();
         }
+
         #endregion
     }
 }
