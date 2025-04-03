@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using CANTIDADES.Models;
 using CANTIDADES.Utils;
+using System.Windows.Markup;
+using System.Windows;
 
 namespace CANTIDADES.ViewModels
 {
@@ -20,8 +22,9 @@ namespace CANTIDADES.ViewModels
         public CantidadesViewModel(UIDocument uidoc)
         {
             _uidoc = uidoc;
-            CargarDatos();
             CargarDosificaciones();
+            CargarDatos();
+            
         }
         private void CargarDosificaciones()
         {
@@ -38,9 +41,15 @@ namespace CANTIDADES.ViewModels
             var dosificacion = _dosificaciones.FirstOrDefault(d => d.ResistenciaKgCm2.ToString() == resistencia);
             if (dosificacion == null) return null;
 
+            //// Verificación de valores
+            //MessageBox.Show($"Volumen: {volumen}");
+            //MessageBox.Show($"Dosificacion Cemento: {dosificacion.Cemento}");
+            //MessageBox.Show(50.ToString());
+            //MessageBox.Show($"Cálculo Cemento: { (420 / 50.0)}");
+
             return new Dictionary<string, double>
             {
-                { "Cemento", volumen * dosificacion.Cemento },
+                { "Cemento", volumen * Math.Round((dosificacion.Cemento/50.0),3 )},
                 { "Arena", volumen * dosificacion.Arena },
                 { "Grava", volumen * dosificacion.Grava },
                 { "Agua", volumen * dosificacion.Agua }
@@ -212,15 +221,21 @@ namespace CANTIDADES.ViewModels
             ContenidoTabla = new List<Data>();
             for (int i = 0; i < nivelElementos.Count; i++)
             {
+                double volumen = Tools.Feet3_to_m3(list[i].get_Parameter(BuiltInParameter.HOST_VOLUME_COMPUTED).AsDouble());
+                var materiales = EstimarMateriales(volumen, "280"); // Ejemplo: resistencia de 280 kg/cm2
+
                 ContenidoTabla.Add(new Data
                 {
                     ID = list[i].Id.ToString(),
                     NIVEL = nivelElementos[i],
                     CATEGORIA = list[i].Category.Name,
-                    AREA = Tools.Feet_to_m(list[i].get_Parameter(BuiltInParameter.HOST_AREA_COMPUTED).AsDouble()).ToString("F3"),
-                    VOLUMEN = Tools.Feet_to_m(list[i].get_Parameter(BuiltInParameter.HOST_VOLUME_COMPUTED).AsDouble()).ToString("F3")
+                    AREA = Tools.Feet2_to_m2(list[i].get_Parameter(BuiltInParameter.HOST_AREA_COMPUTED).AsDouble()).ToString("F3"),
+                    VOLUMEN = volumen.ToString("F3"),
+                    Cemento = Math.Round(materiales["Cemento"], 3),
+                    Arena = Math.Round(materiales["Arena"], 3),
+                    Grava = Math.Round(materiales["Grava"], 3),
+                    Agua = Math.Round(materiales["Agua"], 3)
                 });
-                
             }
         }
 

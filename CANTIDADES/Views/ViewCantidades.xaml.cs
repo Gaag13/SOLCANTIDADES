@@ -37,6 +37,12 @@ namespace CANTIDADES.Views
 
             lbl_TotalElementos.Content = $"Total de elementos: {totalElementos}";
             lbl_VolumenTotal.Content = $"El volumen total es: {volumenTotal.ToString("F2")} m³";
+
+            double totalArena = _viewModel.ContenidoTabla.Sum(data => data.Arena);
+            double totalGrava = _viewModel.ContenidoTabla.Sum(data => data.Grava);
+            double totalAgua = _viewModel.ContenidoTabla.Sum(data => data.Agua);
+
+            
         }
 
         private void CalcularCantidades_Click(object sender, RoutedEventArgs e)
@@ -157,6 +163,10 @@ namespace CANTIDADES.Views
                     excel.Cells[IndiceFilas, IndiceColumna + 2] = fila.CATEGORIA;
                     excel.Cells[IndiceFilas, IndiceColumna + 3] = fila.AREA;
                     excel.Cells[IndiceFilas, IndiceColumna + 4] = fila.VOLUMEN;
+                    excel.Cells[IndiceFilas, IndiceColumna + 5] = fila.Cemento;
+                    excel.Cells[IndiceFilas, IndiceColumna + 6] = fila.Arena;
+                    excel.Cells[IndiceFilas, IndiceColumna + 7] = fila.Grava;
+                    excel.Cells[IndiceFilas, IndiceColumna + 8] = fila.Agua;
                 }
             }
             excel.Visible = true;

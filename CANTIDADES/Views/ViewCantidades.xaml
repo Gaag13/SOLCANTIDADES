@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CANTIDADES.Views"
         mc:Ignorable="d" 
-        Title="ViewCantidades" Height="500" Width="600"
+        Title="ViewCantidades" Height="500" Width="850"
         WindowStyle="None"    ResizeMode="CanResize" >
 
     <Window.Resources>
@@ -51,7 +51,7 @@
         <!-- Contenido Principal -->
         <Grid Grid.Row="1" Margin="20">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
@@ -94,13 +94,44 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        
+
                         <DataGridTemplateColumn Header="VOLUMEN [m³]">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding VOLUMEN}" TextAlignment="Center" Margin="5,0,5,0"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding VOLUMEN}" TextAlignment="Center" Margin="5,0,5,0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        
+                        <DataGridTemplateColumn Header="Cemento [m³]">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Cemento}" TextAlignment="Center" Margin="5,0,5,0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Arena [m³]">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Arena}" TextAlignment="Center" Margin="5,0,5,0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Grava [m³]">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Grava}" TextAlignment="Center" Margin="5,0,5,0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Agua [L³]">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Agua}" TextAlignment="Center" Margin="5,0,5,0"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
                     </DataGrid.Columns>
@@ -129,12 +160,12 @@
             <Button Grid.Column="2" x:Name="btn_ExportExcel" Content="Exportar a Excel"
             HorizontalAlignment="Left" VerticalAlignment="Top"
             Width="112" Height="30" Click="btn_ExportExcel_Click"
-            Style="{StaticResource ButtonStyle}" Margin="44,0,0,0"/>
+            Style="{StaticResource ButtonStyle}" Margin="172,0,0,0"/>
 
             <Button Grid.Column="2" x:Name="CalcularCantidades" Content="new"
              HorizontalAlignment="Left" VerticalAlignment="Top"
              Width="46" Height="30" Click="CalcularCantidades_Click"
-             Style="{StaticResource ButtonStyle}" Margin="196,0,0,0"/>
+             Style="{StaticResource ButtonStyle}" Margin="361,0,0,0"/>
 
 
 

@@ -19,5 +19,10 @@ namespace CANTIDADES.Models
         public string CATEGORIA { get => _CATEGORIA; set => _CATEGORIA = value; }
         public string AREA { get => _AREA_m2; set => _AREA_m2 = value; }
         public string VOLUMEN { get => _VOLUMEN_m3; set => _VOLUMEN_m3 = value; }
+        public double Cemento { get; set; }
+        public double Arena { get; set; }
+        public double Grava { get; set; }
+        public double Agua { get; set; }
     }
 }
+
