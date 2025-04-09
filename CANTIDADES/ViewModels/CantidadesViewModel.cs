@@ -8,6 +8,8 @@ using CANTIDADES.Models;
 using CANTIDADES.Utils;
 using System.Windows.Markup;
 using System.Windows;
+using Autodesk.Revit.DB;
+using System.Xml.Linq;
 
 namespace CANTIDADES.ViewModels
 {

@@ -11,9 +11,23 @@ namespace CANTIDADES.Utils
     {
         public static List<Element> SelectElementMetrados(Document doc)
         {
-            var wallCollector = new FilteredElementCollector(doc).OfClass(typeof(Wall)).ToList();
+            // Filtrar muros estructurales
+            var wallCollector = new FilteredElementCollector(doc)
+                .OfClass(typeof(Wall))
+                .WherePasses(new ElementParameterFilter(
+                    new FilterIntegerRule(
+                        new ParameterValueProvider(new ElementId(BuiltInParameter.WALL_STRUCTURAL_SIGNIFICANT)),
+                        new FilterNumericEquals(),
+                        1)))
+                .ToList();
+
+            // Filtrar pisos
             var floorCollector = new FilteredElementCollector(doc).OfClass(typeof(Floor)).ToList();
+
+            // Filtrar instancias de familias
             var familyInstanceCollector = new FilteredElementCollector(doc).OfClass(typeof(FamilyInstance)).ToList();
+
+            // Combinar resultados
             List<Element> result = new List<Element>();
             result.AddRange(wallCollector);
             result.AddRange(floorCollector);
@@ -21,6 +35,7 @@ namespace CANTIDADES.Utils
 
             return result;
         }
+
 
         public static void MostrarElementosEnTaskDialog(List<Element> elementos)
         {
