@@ -9,8 +9,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="WixSharp.bin" Version="1.*"/>
-        <PackageReference Include="WixSharp.wix.bin" Version="3.*"/>
+        <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="2020.2.60" />
+        <PackageReference Include="WixSharp.bin" Version="1.*" />
+        <PackageReference Include="WixSharp.wix.bin" Version="3.*" />
     </ItemGroup>
 
 </Project>
