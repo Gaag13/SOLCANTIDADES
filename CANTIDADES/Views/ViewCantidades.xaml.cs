@@ -49,8 +49,8 @@ namespace CANTIDADES.Views
         {
             var cantidades = _viewModel.CalcularCantidadesMaterial();
             MessageBox.Show($"Cemento: {cantidades["Cemento"]}\nArena: {cantidades["Arena"]}\nGrava: {cantidades["Grava"]}\nAgua: {cantidades["Agua"]}");
-        }
 
+        }
         private void dra_grid1_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var selectedItems = dta_grid1.SelectedItems;
@@ -58,7 +58,6 @@ namespace CANTIDADES.Views
 
             _viewModel.SeleccionarElementosRevit(ids); // Delegamos la selección de elementos al ViewModel
         }
-
         private void LlenarTreeView(Dictionary<string, List<string>> tiposElementosNivel)
         {
             tre_v1.Items.Clear();
@@ -72,7 +71,6 @@ namespace CANTIDADES.Views
                 tre_v1.Items.Add(nivelItem);
             }
         }
-
         private void tre_v1_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             var selectedItem = tre_v1.SelectedItem as TreeViewItem;
@@ -96,7 +94,6 @@ namespace CANTIDADES.Views
 
                 dta_grid1.ItemsSource = contenidoTablas;
             }
-
             lbl_TotalElementos.Content = dta_grid1.Items.Count.ToString();
             lbl_VolumenTotal.Content = CalculandoVolumen(dta_grid1).ToString();
         }
@@ -131,11 +128,9 @@ namespace CANTIDADES.Views
                     }
                 }
             }
-
             // Redondea el volumen total a 2 decimales
             return System.Math.Round(volumenTotal, 2);
         }
-
         private void btn_ExportExcel_Click(object sender, RoutedEventArgs e)
         {
             var excel = new Microsoft.Office.Interop.Excel.Application();

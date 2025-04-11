@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CANTIDADES.Views"
         mc:Ignorable="d" 
-        Title="ViewCantidades" Height="500" Width="850"
+        Title="ViewCantidades" Height="500" Width="850" WindowStartupLocation="CenterScreen"
         WindowStyle="None"    ResizeMode="CanResize" >
 
     <Window.Resources>
@@ -102,7 +102,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        
+
                         <DataGridTemplateColumn Header="Cemento [m³]">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -160,12 +160,12 @@
             <Button Grid.Column="2" x:Name="btn_ExportExcel" Content="Exportar a Excel"
             HorizontalAlignment="Left" VerticalAlignment="Top"
             Width="112" Height="30" Click="btn_ExportExcel_Click"
-            Style="{StaticResource ButtonStyle}" Margin="172,0,0,0"/>
+            Style="{StaticResource ButtonStyle}" Margin="222,0,0,0"/>
 
             <Button Grid.Column="2" x:Name="CalcularCantidades" Content="new"
              HorizontalAlignment="Left" VerticalAlignment="Top"
              Width="46" Height="30" Click="CalcularCantidades_Click"
-             Style="{StaticResource ButtonStyle}" Margin="361,0,0,0"/>
+             Style="{StaticResource ButtonStyle}" Margin="411,0,0,0"/>
 
 
 

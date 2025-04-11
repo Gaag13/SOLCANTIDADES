@@ -20,7 +20,7 @@ namespace CANTIDADES.Commands
     {
         public override void Execute()
         {
-            var uidoc = UiDocument;
+            var uidoc = UiDocument;            
             var viewModel = new CantidadesViewModel(uidoc);
             var view = new ViewCantidades(viewModel);
             view.ShowDialog();

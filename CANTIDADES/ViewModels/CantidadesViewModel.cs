@@ -10,6 +10,7 @@ using System.Windows.Markup;
 using System.Windows;
 using Autodesk.Revit.DB;
 using System.Xml.Linq;
+using CANTIDADES.Views;
 
 namespace CANTIDADES.ViewModels
 {
@@ -230,11 +231,13 @@ namespace CANTIDADES.ViewModels
                 TiposElementosNivel.Add(nivel, existCategory.Distinct().ToList());
             }
 #endif
+            var interfaz = new ViewResistencia();
+            interfaz.ShowDialog();
             ContenidoTabla = new List<Data>();
             for (int i = 0; i < nivelElementos.Count; i++)
             {
                 double volumen = Tools.Feet3_to_m3(list[i].get_Parameter(BuiltInParameter.HOST_VOLUME_COMPUTED).AsDouble());
-                var materiales = EstimarMateriales(volumen, "3000"); // Ejemplo: resistencia de 280 kg/cm2
+                var materiales = EstimarMateriales(volumen, interfaz.Resistecia); // Ejemplo: resistencia de 280 kg/cm2
 
                 ContenidoTabla.Add(new Data
                 {
