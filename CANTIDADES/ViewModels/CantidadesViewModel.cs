@@ -236,6 +236,10 @@ namespace CANTIDADES.ViewModels
             ContenidoTabla = new List<Data>();
             for (int i = 0; i < nivelElementos.Count; i++)
             {
+                if (list[i].Category.Name == "Title Blocks")
+                {
+                    continue;
+                }
                 double volumen = Tools.Feet3_to_m3(list[i].get_Parameter(BuiltInParameter.HOST_VOLUME_COMPUTED).AsDouble());
                 var materiales = EstimarMateriales(volumen, interfaz.Resistecia); // Ejemplo: resistencia de 280 kg/cm2
 
