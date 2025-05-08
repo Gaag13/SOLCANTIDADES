@@ -9,13 +9,6 @@ Su objetivo principal es proporcionar a los modeladores una herramienta que faci
 ✔ **Optimización del proceso de diseño**, permitiendo decisiones más rápidas y precisas.  
 ✔ **Integración fluida con Revit**, mejorando el flujo de trabajo del modelador.  
 ✔ **Datos instantáneos sin necesidad de procesos manuales adicionales**.  
-
-## 🔹 **Desarrollo Futuro**  
-A futuro, **SOLCANTIDADES** evolucionará para incluir funcionalidades adicionales como:  
-✅ **Estimación de materiales** basada en los volúmenes extraídos y utilizando **dosificaciones predefinidas**.  
-✅ **Cálculo de cantidades de materiales** como **arena, agua, grava y cemento** según la obra modelada.  
-✅ **Generación de un presupuesto preliminar**, calculando el costo total estimado del proyecto.  
-
 ## 🔹 **Tecnologías Utilizadas**  
 - 💻 **C# y Revit API** – Desarrollo del add-in y extracción de datos de modelos BIM.  
 - 🏗 **Autodesk Revit** – Software donde se ejecuta el complemento.  
@@ -24,7 +17,9 @@ A futuro, **SOLCANTIDADES** evolucionará para incluir funcionalidades adicional
 ✅ Modeladores BIM que necesiten **calcular cantidades de obra de manera instantánea**.  
 ✅ Ingenieros y arquitectos que quieran **optimizar el proceso de estimación de costos**.  
 ✅ Empresas de construcción que busquen **automatizar cálculos y mejorar su planificación**.  
-
+✅ **Estimación de materiales** basada en los volúmenes extraídos y utilizando **dosificaciones predefinidas**.  
+✅ **Cálculo de cantidades de materiales** como **arena, agua, grava y cemento** según la obra modelada.  
+✅ **Generación de un presupuesto preliminar**, calculando el costo total estimado del proyecto.  
 ## 📩 **Contribuciones y Contacto**  
 Si deseas contribuir o necesitas soporte, visita el repositorio en [GitHub](https://github.com/Gaag13/SOLCANTIDADES).  
 
