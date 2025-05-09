@@ -12,6 +12,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="dotenv.net" Version="3.2.1" />
         <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="2026.0.4" />
         <PackageReference Include="Nuke.Common" Version="9.0.4" />
         <PackageReference Include="Autodesk.PackageBuilder" Version="1.0.6" />

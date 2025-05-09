@@ -19,18 +19,20 @@ namespace CANTIDADES.Commands
     {
         public override void Execute()
         {
-            // Inicializar Firebase
-            IFirebaseConfig config = new FirebaseConfig
+            DotEnvLoader.Load();
+
+            string authSecret = Environment.GetEnvironmentVariable("FIREBASE_SECRET");
+            string basePath = Environment.GetEnvironmentVariable("FIREBASE_URL");
+
+            var config = new FirebaseConfig
             {
-                AuthSecret = "BF0KL7IhqDzptYihcrOVlWsJ9J0iLYqSMlQvebqV",
-                BasePath = "https://warbimpro-default-rtdb.firebaseio.com/"
+                AuthSecret = authSecret,
+                BasePath = basePath
             };
             IFirebaseClient client = new FireSharp.FirebaseClient(config);
 
-            // Abrir la ventana de login y pasar el cliente de Firebase
             Logeo loginWindow = new Logeo(client);
             loginWindow.Show();
-
         }
     }
 }
