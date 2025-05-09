@@ -154,18 +154,13 @@
 
             <Label x:Name="lbl_VolumenTotal" Content="Volumen Total:"
            HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White"
-           Margin="186,0,0,10"
-           Style="{StaticResource CustomLabelStyle}" Grid.Column="1" Height="25" Width="168" Grid.ColumnSpan="2"/>
+           Margin="186,0,0,0"
+           Style="{StaticResource CustomLabelStyle}" Grid.Column="1" Height="25" Width="239" Grid.ColumnSpan="2"/>
 
             <Button Grid.Column="2" x:Name="btn_ExportExcel" Content="Exportar a Excel"
             HorizontalAlignment="Left" VerticalAlignment="Top"
             Width="112" Height="30" Click="btn_ExportExcel_Click"
             Style="{StaticResource ButtonStyle}" Margin="222,0,0,0"/>
-
-            <Button Grid.Column="2" x:Name="CalcularCantidades" Content="new"
-             HorizontalAlignment="Left" VerticalAlignment="Top"
-             Width="46" Height="30" Click="CalcularCantidades_Click"
-             Style="{StaticResource ButtonStyle}" Margin="411,0,0,0"/>
 
 
 

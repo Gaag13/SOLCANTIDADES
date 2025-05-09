@@ -52,21 +52,16 @@ namespace CANTIDADES.ViewModels
         public Dictionary<string, double> EstimarMateriales(double volumen, string resistencia)
         {
             var dosificacion = _dosificaciones.FirstOrDefault(d => d.ResistenciaPSI.ToString() == resistencia);
-            if (dosificacion == null) return null;
-
-            //// Verificación de valores
-            //MessageBox.Show($"Volumen: {volumen}");
-            //MessageBox.Show($"Dosificacion Cemento: {dosificacion.Cemento}");
-            //MessageBox.Show(50.ToString());
-            //MessageBox.Show($"Cálculo Cemento: { (420 / 50.0)}");
+            if (dosificacion == null) return null;          
 
             return new Dictionary<string, double>
             {
-                { "Cemento", volumen * Math.Round((dosificacion.Cemento/50.0),3 )},
+                { "Cemento", volumen* Math.Round((double)dosificacion.Cemento, 3) },
                 { "Arena", volumen * dosificacion.Arena },
                 { "Grava", volumen * dosificacion.Grava },
                 { "Agua", volumen * dosificacion.Agua }
             };
+           
         }
         public Dictionary<string, double> CalcularCantidadesMaterial()
         {
@@ -233,6 +228,13 @@ namespace CANTIDADES.ViewModels
 #endif
             var interfaz = new ViewResistencia();
             interfaz.ShowDialog();
+            
+            if(string.IsNullOrEmpty(interfaz.Resistecia ) || string.IsNullOrEmpty(interfaz.Cemento))
+            {
+                MessageBox.Show("Por favor, seleccione una resistencia y un tipo de cemento.");
+                return;
+            }
+
             ContenidoTabla = new List<Data>();
             for (int i = 0; i < nivelElementos.Count; i++)
             {
@@ -241,7 +243,7 @@ namespace CANTIDADES.ViewModels
                     continue;
                 }
                 double volumen = Tools.Feet3_to_m3(list[i].get_Parameter(BuiltInParameter.HOST_VOLUME_COMPUTED).AsDouble());
-                var materiales = EstimarMateriales(volumen, interfaz.Resistecia); // Ejemplo: resistencia de 280 kg/cm2
+                var materiales = EstimarMateriales(volumen, interfaz.Resistecia); 
 
                 ContenidoTabla.Add(new Data
                 {
@@ -250,7 +252,7 @@ namespace CANTIDADES.ViewModels
                     CATEGORIA = list[i].Category.Name,
                     AREA = Tools.Feet2_to_m2(list[i].get_Parameter(BuiltInParameter.HOST_AREA_COMPUTED).AsDouble()).ToString("F3"),
                     VOLUMEN = volumen.ToString("F3"),
-                    Cemento = Math.Round(materiales["Cemento"], 3),
+                    Cemento = Math.Round(materiales["Cemento"]/ double.Parse(interfaz.Cemento), 3),
                     Arena = Math.Round(materiales["Arena"], 3),
                     Grava = Math.Round(materiales["Grava"], 3),
                     Agua = Math.Round(materiales["Agua"], 3)

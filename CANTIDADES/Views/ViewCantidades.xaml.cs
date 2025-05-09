@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CANTIDADES.Models;
 using CANTIDADES.ViewModels;
+using CANTIDADES.Utils;
 
 namespace CANTIDADES.Views
 {
@@ -139,6 +140,9 @@ namespace CANTIDADES.Views
             int IndiceColumna = 1;
             int IndiceFilas = 1;
 
+            // Configurar la cultura para formatear los números
+            var culturaEspañola = new System.Globalization.CultureInfo("es-ES");
+
             foreach (var column in dta_grid1.Columns)
             {
                 excel.Cells[IndiceFilas, IndiceColumna] = column.Header;
@@ -155,7 +159,7 @@ namespace CANTIDADES.Views
                 {
                     excel.Cells[IndiceFilas, IndiceColumna] = fila.ID;
                     excel.Cells[IndiceFilas, IndiceColumna + 1] = fila.NIVEL;
-                    excel.Cells[IndiceFilas, IndiceColumna + 2] = fila.CATEGORIA;
+                    excel.Cells[IndiceFilas, IndiceColumna + 2] = fila.CATEGORIA;                    
                     excel.Cells[IndiceFilas, IndiceColumna + 3] = fila.AREA;
                     excel.Cells[IndiceFilas, IndiceColumna + 4] = fila.VOLUMEN;
                     excel.Cells[IndiceFilas, IndiceColumna + 5] = fila.Cemento;
@@ -164,6 +168,9 @@ namespace CANTIDADES.Views
                     excel.Cells[IndiceFilas, IndiceColumna + 8] = fila.Agua;
                 }
             }
+           
+
+
             excel.Visible = true;
         }
 
@@ -186,6 +193,7 @@ namespace CANTIDADES.Views
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            
             Close();
         }
 
