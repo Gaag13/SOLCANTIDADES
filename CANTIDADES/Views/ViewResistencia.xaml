@@ -37,7 +37,7 @@
 
             <!-- Título -->
             <TextBlock Grid.Row="0" 
-                       Text="Seleccionar Resistencia" 
+                       Text="Seleccionar Resistencia [PSI]" 
                        Style="{StaticResource ModernTextBlockStyle}"
                        HorizontalAlignment="Center"
                        Margin="0,10,0,5"/>
