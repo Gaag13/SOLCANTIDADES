@@ -20,3 +20,4 @@
 #User-specific files
 *.user
 /CANTIDADES/.env
+/CANTIDADES/env
