@@ -1,13 +1,14 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.UI;
+using CANTIDADES.Models;
+using CANTIDADES.Views;
 using FireSharp;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using Newtonsoft.Json;
 using Nice3point.Revit.Toolkit.External;
-using CANTIDADES.Models;
-using CANTIDADES.Views;
 using System.Data.SqlClient;
+using static System.Net.WebRequestMethods;
 
 
 namespace CANTIDADES.Commands
@@ -19,15 +20,12 @@ namespace CANTIDADES.Commands
     {
         public override void Execute()
         {
-            DotEnvLoader.Load();
-
-            string authSecret = Environment.GetEnvironmentVariable("FIREBASE_SECRET");
-            string basePath = Environment.GetEnvironmentVariable("FIREBASE_URL");
+           
 
             var config = new FirebaseConfig
             {
-                AuthSecret = authSecret,
-                BasePath = basePath
+                AuthSecret = "9sM2cKwGixqXR1FzxzZa7EyRrgn2INouUfcXFV8h",
+                BasePath = "https://warbimpro-default-rtdb.firebaseio.com/"
             };
             IFirebaseClient client = new FireSharp.FirebaseClient(config);
 
