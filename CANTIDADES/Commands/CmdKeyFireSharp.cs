@@ -27,7 +27,6 @@ namespace CANTIDADES.Commands
                 AuthSecret = "9sM2cKwGixqXR1FzxzZa7EyRrgn2INouUfcXFV8h",
                 BasePath = "https://warbimpro-default-rtdb.firebaseio.com/"
             };
-
             
             IFirebaseClient client = new FireSharp.FirebaseClient(config);
 
