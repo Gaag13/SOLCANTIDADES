@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.UI;
+using Cantidades.Security;
 using CANTIDADES.Models;
 using CANTIDADES.Views;
 using FireSharp;
@@ -21,12 +22,13 @@ namespace CANTIDADES.Commands
         public override void Execute()
         {
            
+            //var config = new FirebaseConfig
+            //{
+            //    AuthSecret = "9sM2cKwGixqXR1FzxzZa7EyRrgn2INouUfcXFV8h",
+            //    BasePath = "https://warbimpro-default-rtdb.firebaseio.com/"
+            //};
 
-            var config = new FirebaseConfig
-            {
-                AuthSecret = "9sM2cKwGixqXR1FzxzZa7EyRrgn2INouUfcXFV8h",
-                BasePath = "https://warbimpro-default-rtdb.firebaseio.com/"
-            };
+            var config = FirebaseConfigLoader.LoadConfig();
             IFirebaseClient client = new FireSharp.FirebaseClient(config);
 
             Logeo loginWindow = new Logeo(client);
