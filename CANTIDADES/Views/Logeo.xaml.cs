@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Autodesk.Revit.UI;
 using CANTIDADES.Commands;
 using CANTIDADES.Models;
+using CANTIDADES.Utils;
 using FireSharp.Interfaces;
 using FireSharp.Response;
 
@@ -25,54 +26,40 @@ namespace CANTIDADES.Views
     /// </summary>
     public partial class Logeo : Window
     {
-        
-        private IFirebaseClient client;
+        private FirebaseAuthService _auth;
 
-        public Logeo(IFirebaseClient firebaseClient)
+        public Logeo(FirebaseAuthService authService)
         {
             InitializeComponent();
-            client = firebaseClient;
+            _auth = authService;
+
         }
 
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            string enteredUsername = txtLoginUsername.Text;
-            string enteredPassword = txtLoginPassword.Password;
+            string email = txtLoginUsername.Text;
+            string password = txtLoginPassword.Password;
 
-            FirebaseResponse response = await client.GetAsync("Usuario");
-            Dictionary<string, DataFirebase> allusers = response.ResultAs<Dictionary<string, DataFirebase>>();
+            var auth = new FirebaseAuthService();
+            DataFirebase usuario = await auth.IniciarSesionUsuarioAsync(email);
 
-            bool userFound = false;
-            foreach (var user in allusers)
+            if (usuario!= null && Security.VerificacionCotraseña(password,usuario.Password))
             {
-                if (user.Value.Name == enteredUsername)
-                {
-                    userFound=true;
-                    if (Security.VerificacionCotraseña(enteredPassword,user.Value.Password))
-                    {
-                        MessageBox.Show("Logueado Exitoso", "Exito", MessageBoxButton.OK, MessageBoxImage.Information);
-                        SesionManager guardarEstadoDeSesion=new SesionManager();
-                        guardarEstadoDeSesion.GuardarEstadoDeSesion(enteredUsername);
-                        TaskDialog.Show("Exito", "Button Habilitado");
-                        AvailabilityButton.IsEnabled = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Contraseña incorrecta", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    break;
-                }
+                MessageBox.Show("Logueado Exitoso", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                SesionManager guardarEstadoDeSesion = new SesionManager();
+                guardarEstadoDeSesion.GuardarEstadoDeSesion(email);
+                AvailabilityButton.IsEnabled = true;
+                this.Close();
             }
-            if (!userFound)
+            else
             {
-                MessageBox.Show("Usuario no encontrado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error al iniciar sesión: " , "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            this.Close();
         }
-
         private void ButtonBaseR_OnClick(object sender, RoutedEventArgs e)
         {
-            Register registerWindow = new Register(client);
+            var authService = new FirebaseAuthService();
+            Register registerWindow = new Register(authService);
             registerWindow.ShowDialog();
             this.Close();
         }
@@ -103,31 +90,5 @@ namespace CANTIDADES.Views
             }
 
         }
-        //private async void ValidarLicencia(string usuarioId)
-        //{
-        //    FirebaseResponse response = await client.GetAsync("Usuario");
-        //    var licencia = response.ResultAs<DataFirebase>();
-        //    if (licencia == null)
-        //    {
-        //        MessageBox.Show("No se encontró la licencia.");
-        //        return;
-        //    }
-        //    TimeSpan diferencia = DateTime.Now - DateTime.Parse(licencia.Datetime);
-
-        //    if (diferencia.TotalDays > 1 && licencia.IsActive)
-        //    {
-        //        MessageBox.Show("Tu version de prueba ha expirado. Por favor, compra el producto");
-        //        licencia.IsActive = false;
-        //        await client.SetAsync($"Licencias/{usuarioId}", licencia);
-        //        System.Windows.Application.Current.Shutdown();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show($"Días restantes: {15 - diferencia.TotalDays}");
-        //    }
-
-        //}
-
-        
     }
 }

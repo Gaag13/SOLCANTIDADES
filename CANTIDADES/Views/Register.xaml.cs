@@ -21,6 +21,7 @@ using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp;
 using Microsoft.Office.Interop.Excel;
+using CANTIDADES.Utils;
 
 namespace CANTIDADES.Views
 {
@@ -29,54 +30,37 @@ namespace CANTIDADES.Views
     /// </summary>
     public partial class Register : System.Windows.Window
     {
-        private IFirebaseClient client;
-        
-        public Register(IFirebaseClient firebaseClient)
+        private FirebaseAuthService _auth;
+
+        public Register(FirebaseAuthService authService)
         {
             InitializeComponent();
-            client = firebaseClient;
-            try
-            {
-                if (client != null)
-                {
-                    MessageBox.Show("Éxito", "Conexión establecida correctamente con Firebase");
-                }
-            }
-            catch (System.IO.FileNotFoundException ex)
-            {
-                MessageBox.Show("Error", "Archivo no encontrado: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error", "No se pudo establecer la conexión: " + ex.Message);
-            }
-
+            _auth = authService;
         }
+
+
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            string cotraseñaHasheada = Security.EncriptarCotraseña(txtPassword.Password);
+            string contraseñaHasheada = Security.EncriptarCotraseña(txtPassword.Password);
 
-            var data = new DataFirebase()
+            var data = new
             {
                 Name = txtNombreUsuario.Text,
                 Email = txtEmail.Text,
                 Country = txtPais.Text,
-                Password = cotraseñaHasheada,
-                Datetime = DateTime.Now.ToString("MM/dd/yyyy"),
-                IsActive = true
+                Password = contraseñaHasheada
             };
 
+            var auth = new FirebaseAuthService();
+            string respuesta = await auth.RegistrarUsuarioAsync(data);
 
-            var response = await client.PushAsync("Usuario/", data);
-            // Obtener el ID generado por Firebase
-            string generatedId = response.Result.name;  // Firebase retorna el ID generado bajo "name"
+            MessageBox.Show("Registro exitoso: " + respuesta);
 
-            // Mostrar el ID generado o el mensaje de éxito
-            MessageBox.Show($"Registro exitoso");
-
-            Logeo loginWindow = new Logeo(client);
+            // Volver al login
+            Logeo loginWindow = new Logeo(_auth);
             loginWindow.Show();
             this.Close();
         }
+
     }
 }

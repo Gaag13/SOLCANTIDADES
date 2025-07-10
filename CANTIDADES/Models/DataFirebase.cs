@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CANTIDADES.Models
 {
-    internal class DataFirebase
+    public class DataFirebase
     {
         public string Name { get; set; }
         public string Email { get; set; }
