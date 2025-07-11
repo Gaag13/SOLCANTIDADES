@@ -41,24 +41,24 @@ namespace CANTIDADES.Views
 
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            string contraseñaHasheada = Security.EncriptarCotraseña(txtPassword.Password);
+            string contraseña = txtPassword.Password;
 
             var data = new
             {
                 Name = txtNombreUsuario.Text,
                 Email = txtEmail.Text,
                 Country = txtPais.Text,
-                Password = contraseñaHasheada
+                Password = contraseña
             };
 
             var auth = new FirebaseAuthService();
             string respuesta = await auth.RegistrarUsuarioAsync(data);
 
-            MessageBox.Show("Registro exitoso: " + respuesta);
+            MessageBox.Show("Registro exitoso: ");
 
-            // Volver al login
-            Logeo loginWindow = new Logeo(_auth);
-            loginWindow.Show();
+            //// Volver al login
+            //Logeo loginWindow = new Logeo(_auth);
+            //loginWindow.Show();
             this.Close();
         }
 

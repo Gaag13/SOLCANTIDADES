@@ -23,13 +23,15 @@ namespace CANTIDADES.Utils
             return await response.Content.ReadAsStringAsync();
         }
 
-        public async Task<DataFirebase> IniciarSesionUsuarioAsync(string email)
+        public async Task<DataFirebase> IniciarSesionUsuarioAsync(string email, string password)
         {
-            var payload = new { Email = email, Password = "dummy" }; // Password no se evalúa en backend
+            var payload = new { Email = email, Password = password }; // ✅ usar la real
             string json = JsonConvert.SerializeObject(payload);
+
             var response = await _client.PostAsync(loginUrl, new StringContent(json, Encoding.UTF8, "application/json"));
 
-            if (!response.IsSuccessStatusCode) return null;
+            if (!response.IsSuccessStatusCode)
+                return null;
 
             var content = await response.Content.ReadAsStringAsync();
             var parsed = JObject.Parse(content);
@@ -37,6 +39,7 @@ namespace CANTIDADES.Utils
             var usuarioJson = parsed["usuario"]?.ToString();
             return usuarioJson != null ? JsonConvert.DeserializeObject<DataFirebase>(usuarioJson) : null;
         }
+
 
     }
 }

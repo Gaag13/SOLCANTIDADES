@@ -35,8 +35,6 @@ namespace CANTIDADES.Utils
 
             return result;
         }
-
-
         public static void MostrarElementosEnTaskDialog(List<Element> elementos)
         {
 

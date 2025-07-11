@@ -37,13 +37,12 @@ namespace CANTIDADES.Views
 
         private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            string email = txtLoginUsername.Text;
-            string password = txtLoginPassword.Password;
+            string email = txtLoginUsername.Text.Trim();
+            string password = txtLoginPassword.Password.Trim();
 
-            var auth = new FirebaseAuthService();
-            DataFirebase usuario = await auth.IniciarSesionUsuarioAsync(email);
+            DataFirebase usuario = await _auth.IniciarSesionUsuarioAsync(email, password);
 
-            if (usuario!= null && Security.VerificacionCotraseña(password,usuario.Password))
+            if (usuario != null)
             {
                 MessageBox.Show("Logueado Exitoso", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
                 SesionManager guardarEstadoDeSesion = new SesionManager();
@@ -53,8 +52,9 @@ namespace CANTIDADES.Views
             }
             else
             {
-                MessageBox.Show("Error al iniciar sesión: " , "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error al iniciar sesión: Usuario o contraseña inválidos", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
         private void ButtonBaseR_OnClick(object sender, RoutedEventArgs e)
         {
