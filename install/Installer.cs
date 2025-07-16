@@ -38,9 +38,8 @@ void BuildSingleUserMsi()
     project.OutFileName = $"{outputName}-{project.Version}-SingleUser";
     project.Dirs =
     [
-        new InstallDir(@"%AppDataFolder%\Autodesk\Revit\Addins\", wixEntities),
-        new InstallDir(@"%AppDataFolder%\Cantidades",
-        new Files(@"install\Resources\config.dat")) 
+        new InstallDir(@"%AppDataFolder%\Autodesk\Revit\Addins\", wixEntities)
+        
     ];
     project.BuildMsi();
 }
@@ -51,9 +50,8 @@ void BuildMultiUserUserMsi()
     project.OutFileName = $"{outputName}-{project.Version}-MultiUser";
     project.Dirs =
     [
-        new InstallDir(@"%CommonAppDataFolder%\Autodesk\Revit\Addins\", wixEntities),
-        new InstallDir(@"%AppDataFolder%\Cantidades",
-        new Files(@"install\Resources\config.dat")) 
+        new InstallDir(@"%CommonAppDataFolder%\Autodesk\Revit\Addins\", wixEntities)
+       
     ];
     project.BuildMsi();
 }
